@@ -1,0 +1,13 @@
+@import 'styles/variables.scss';
+
+.text {
+  color: red;
+  font-size: var(--main-gutter);
+  @include mq('sm') {
+    color: blue;
+  }
+}
+
+.bgc {
+  background-color: var(--navy);
+}

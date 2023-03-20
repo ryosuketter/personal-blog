@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { Button } from '../components/Button'
+
 const Page: NextPage = () => {
   return (
     <div>
@@ -11,6 +13,7 @@ const Page: NextPage = () => {
       <main>
         <h1>Hello!</h1>
       </main>
+      <Button />
     </div>
   )
 }
