@@ -1,7 +1,5 @@
-export const Hero = () => {
-  return (
-    <div>
-      <p>Hero</p>
-    </div>
-  )
+import { FC } from 'react'
+
+export const Hero: FC = () => {
+  return null
 }
