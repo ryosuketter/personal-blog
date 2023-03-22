@@ -1,0 +1,12 @@
+/* 両端揃え */
+@mixin spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 縦並び（中央揃え） */
+@mixin verticallyCenteredSideBySide {
+  align-items: center;
+  text-align: center;
+}
