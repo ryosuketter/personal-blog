@@ -1,14 +1,28 @@
 import '../styles/global.scss'
 
+import { Rubik } from '@next/font/google'
 import type { AppProps } from 'next/app'
 
 import { Layout } from '@/components/Layout'
 
+export const rubik = Rubik({
+  subsets: ['latin']
+})
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <div>
+      <style jsx global>{`
+        html,
+        body {
+          font-family: ${rubik.style.fontFamily}, 'Noto Sans JP', 游ゴシック体, 'Yu Gothic', YuGothic,
+            'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', メイリオ, Meiryo, 'Hiragino Sans', sans-serif;
+        }
+      `}</style>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </div>
   )
 }
 
