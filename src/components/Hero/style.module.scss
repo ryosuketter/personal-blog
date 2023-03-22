@@ -1,0 +1,23 @@
+@import 'styles/utils.scss';
+@import 'styles/variables.scss';
+
+.wrapper {
+  @include verticallyCenteredSideBySide;
+  padding-bottom: calc(var(--space-xl) * 0.7);
+}
+
+.title {
+  font-size: var(--font-size-display2);
+  font-weight: 700;
+}
+
+.keyVisual {
+  font-size: var(--font-size-display1);
+  font-weight: 700;
+  color: var(--color-yellow);
+}
+
+.subtitle {
+  font-size: var(--font-size-small-heading2);
+  color: var(--color-scarpa-flow);
+}
