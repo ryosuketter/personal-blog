@@ -55,10 +55,16 @@ img {
   --font-size-small-heading3: calc(var(--small-heading2) * 0.86); /* 12-23px */
 
   /* Spacing */
-  --space-xs: clamp(1.25rem, 1rem + 0.98vw, 1.875rem); /* 20-30px, 1.5-1.875rem */
-  --space-sm: calc(var(--space-xs) * 1.5); /* 30-45px, 1.875-2.8125rem */
-  --space-md: calc(var(--space-xs) * 2); /* 40-60px, 2.5-3.75rem */
-  --space-lg: calc(var(--space-xs) * 3); /* 60-90px, 3.75-5.625rem */
-  --space-xl: calc(var(--space-xs) * 4); /* 80-120px, 5-7.5rem */
-  --space-jump: clamp(1.25rem, 0.35rem + 3.8vw, 3.75rem); /* 20-60px, 1.5-3.75rem */
+  --spacing-0: 0.25rem;
+  --spacing-1: 0.5rem;
+  --spacing-2: 1rem;
+  --spacing-3: 1.5rem;
+  --spacing-4: 2rem;
+  --spacing-5: 2.5rem;
+  --spacing-xs: clamp(1.25rem, 1rem + 0.98vw, 1.875rem); /* 20-30px, 1.5-1.875rem */
+  --spacing-sm: calc(var(--spacing-xs) * 1.5); /* 30-45px, 1.875-2.8125rem */
+  --spacing-md: calc(var(--spacing-xs) * 2); /* 40-60px, 2.5-3.75rem */
+  --spacing-lg: calc(var(--spacing-xs) * 3); /* 60-90px, 3.75-5.625rem */
+  --spacing-xl: calc(var(--spacing-xs) * 4); /* 80-120px, 5-7.5rem */
+  --spacing-jump: clamp(1.25rem, 0.35rem + 3.8vw, 3.75rem); /* 20-60px, 1.5-3.75rem */
 }
