@@ -8,10 +8,10 @@ type LayoutProps = Required<{
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <>
       <Header />
       {children}
       <Footer />
-    </div>
+    </>
   )
 }

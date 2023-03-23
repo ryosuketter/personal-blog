@@ -1,11 +1,12 @@
-import { Container } from '@/components/Container'
+import { About } from '@/components/About'
 import { Hero } from '@/components/Hero'
 
 const Home = () => {
   return (
-    <Container>
+    <>
       <Hero />
-    </Container>
+      <About />
+    </>
   )
 }
 
