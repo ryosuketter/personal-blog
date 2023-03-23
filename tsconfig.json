@@ -16,7 +16,9 @@
     "isolatedModules": true,
     "incremental": true,
     "paths": {
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/libs/*": ["libs/*"],
+      "@/types/*": ["types/*"]
     }
   },
   "exclude": ["node_modules", "deployments", ".next", "out"],
