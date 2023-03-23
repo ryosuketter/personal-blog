@@ -34,7 +34,7 @@ img {
 
 :root {
   /* Color */
-  --color-gray-10: #f4f5f6;
+  --color-gray-10: #ebebeb;
   --color-gray-25: #aaaaaa;
   --color-gray-50: #707070;
   --color-gray-75: #444444;
@@ -54,6 +54,12 @@ img {
   --font-size-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem); /* 16-18px */
   --font-size-small-heading2: clamp(0.875rem, 4vw - 1rem, 1.6875rem); /* 14-27px */
   --font-size-small-heading3: calc(var(--small-heading2) * 0.86); /* 12-23px */
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+
+  /* Border Radius */
+  --border-radius: 5px;
 
   /* Spacing */
   --spacing-0: 0.25rem;
