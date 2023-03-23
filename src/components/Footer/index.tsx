@@ -1,12 +1,13 @@
 import { FC } from 'react'
 
-import { Container } from '@/components/Container'
+import { Logo } from '@/components/Logo'
+
+import styles from './style.module.scss'
+
 export const Footer: FC = () => {
   return (
-    <footer>
-      <Container>
-        <p>Footer</p>
-      </Container>
+    <footer className={styles.footer}>
+      <Logo />
     </footer>
   )
 }
