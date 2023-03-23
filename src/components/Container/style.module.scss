@@ -1,0 +1,14 @@
+@mixin default {
+  width: 90%;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.default {
+  @include default;
+}
+
+.large {
+  @include default;
+  max-width: 1280px;
+}
