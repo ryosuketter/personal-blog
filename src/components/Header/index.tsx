@@ -8,9 +8,9 @@ import styles from './style.module.scss'
 
 export const Header: FC = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <Container large>
-        <div className={styles.header}>
+        <div className={styles.flexContainer}>
           <Logo />
           <Nav />
         </div>

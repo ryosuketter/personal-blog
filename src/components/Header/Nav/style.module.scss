@@ -1,6 +1,8 @@
+@import 'styles/mediaQuery.scss';
+
 .list {
   display: flex;
-  gap: 1em;
+  gap: 2em;
 }
 
 .link {
@@ -10,5 +12,9 @@
 
   &:hover {
     color: var(--color-link);
+  }
+
+  @include mq('sm') {
+    display: none;
   }
 }
