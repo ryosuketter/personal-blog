@@ -7,7 +7,7 @@ import styles from './style.module.scss'
 export const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
-      <Logo />
+      © <Logo />
     </footer>
   )
 }
