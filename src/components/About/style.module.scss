@@ -1,0 +1,55 @@
+@import 'styles/mediaQuery.scss';
+
+.backGround {
+  background-color: var(--color-gray-10);
+}
+
+.wrapper {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.image {
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-sm);
+}
+
+.name {
+  font-size: var(--font-size-heading1);
+  font-weight: var(--font-weight-bold);
+
+  @include mq('md') {
+    font-size: var(--font-size-heading2);
+  }
+}
+
+.nameSub {
+  font-size: var(--font-size-heading3);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+
+  @include mq('md') {
+    font-size: var(--font-size-body);
+  }
+}
+
+.career {
+  margin-bottom: var(--spacing-xs);
+}
+
+.link {
+  color: var(--color-black);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+
+  &:hover {
+    color: var(--color-link);
+  }
+}
