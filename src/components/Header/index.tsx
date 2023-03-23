@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import { Container } from '@/components/Container'
-import { Logo } from '@/components/Header/Logo'
 import { Nav } from '@/components/Header/Nav'
+import { Logo } from '@/components/Logo'
 
 import styles from './style.module.scss'
 
