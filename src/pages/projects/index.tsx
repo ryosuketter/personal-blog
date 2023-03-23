@@ -1,12 +1,12 @@
 import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
 
-const Home = () => {
+const Work = () => {
   return (
     <Container>
-      <Hero />
+      <Hero title="Projects" subtitle="I've worked on and client-work in the past" />
     </Container>
   )
 }
 
-export default Home
+export default Work

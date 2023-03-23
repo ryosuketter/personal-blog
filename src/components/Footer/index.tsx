@@ -1,9 +1,12 @@
 import { FC } from 'react'
 
+import { Container } from '@/components/Container'
 export const Footer: FC = () => {
   return (
-    <div>
-      <p>Footer</p>
-    </div>
+    <footer>
+      <Container>
+        <p>Footer</p>
+      </Container>
+    </footer>
   )
 }
