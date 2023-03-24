@@ -59,7 +59,12 @@ img {
   --font-weight-bold: 700;
 
   /* Border Radius */
-  --border-radius: 5px;
+  --rounded-xs: 4px;
+  --rounded-sm: 7px;
+  --rounded-md: 10px;
+  --rounded-lg: 14px;
+  --rounded-xl: 20px;
+  --rounded-full: 99rem;
 
   /* Spacing */
   --spacing-0: 0.25rem;
