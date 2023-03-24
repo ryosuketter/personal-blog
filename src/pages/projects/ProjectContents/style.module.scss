@@ -1,0 +1,37 @@
+.wrapper {
+  margin-bottom: var(--spacing-lg);
+}
+
+.header {
+  font-size: var(--font-size-heading3);
+  padding-bottom: var(--spacing-1);
+
+  a {
+    color: var(--color-black);
+
+    &:hover {
+      color: var(--color-link);
+    }
+  }
+}
+
+.body {
+  font-size: var(--font-size-body);
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: var(--spacing-1);
+
+  .tag {
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--color-black);
+    border-radius: var(--rounded-xl);
+    padding: 2px 8px;
+    margin: 0 8px 0 0;
+    word-break: keep-all;
+  }
+}
