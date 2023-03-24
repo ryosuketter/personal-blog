@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
+import { Meta } from '@/components/Meta'
 import { client } from '@/libs/client'
 import { Projects } from '@/types/projects'
 
@@ -11,6 +12,7 @@ const Project: FC<Projects> = ({ projects }) => {
   return (
     <Container>
       <>
+        <Meta pageTitle="Projects" pageDesc="これまでに参加したプロジェクトの一覧です" />
         <Hero title="Projects" />
         <ProjectContents projects={projects} />
       </>
