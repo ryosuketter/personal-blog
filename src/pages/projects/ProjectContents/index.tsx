@@ -1,12 +1,11 @@
 import dayjs from 'dayjs'
-import { FC } from 'react'
 
 import { Container } from '@/components/Container'
 import type { Projects } from '@/types/projects'
 
 import styles from './style.module.scss'
 
-export const ProjectContents: FC<Projects> = ({ projects }) => {
+export default function ProjectContents({ projects }: Projects) {
   if (projects.length <= 0) return null
 
   return (
