@@ -4,7 +4,7 @@ import { Meta } from '@/components/Meta'
 import { client } from '@/libs/client'
 import { Projects } from '@/types/projects'
 
-import { ProjectContents } from './ProjectContents'
+import ProjectContents from './ProjectContents'
 
 export default function Project({ projects }: Projects) {
   return (
