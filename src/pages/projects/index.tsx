@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container'
+import { Background } from '@/components/Background'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
 import { client } from '@/libs/client'
@@ -8,13 +8,13 @@ import { ProjectContents } from './ProjectContents'
 
 export default function Project({ projects }: Projects) {
   return (
-    <Container>
-      <>
-        <Meta pageTitle="Projects" pageDesc="これまでに参加したプロジェクトの一覧です" />
-        <Hero title="Projects" />
+    <>
+      <Meta pageTitle="Projects" pageDesc="これまでに参加したプロジェクトの一覧です" />
+      <Hero title="Projects" />
+      <Background>
         <ProjectContents projects={projects} />
-      </>
-    </Container>
+      </Background>
+    </>
   )
 }
 
