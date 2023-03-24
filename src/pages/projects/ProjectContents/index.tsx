@@ -6,7 +6,7 @@ import type { Projects } from '@/types/projects'
 import styles from './style.module.scss'
 
 export default function ProjectContents({ projects }: Projects) {
-  if (projects.length <= 0) return null
+  if (!projects) return null
 
   return (
     <Container>
