@@ -2,7 +2,7 @@ import { About } from '@/components/About'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
 
-const Home = () => {
+export default function Home() {
   return (
     <>
       <Meta />
@@ -11,5 +11,3 @@ const Home = () => {
     </>
   )
 }
-
-export default Home

@@ -9,7 +9,7 @@ export const rubik = Rubik({
   subsets: ['latin']
 })
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <style jsx global>{`
@@ -25,5 +25,3 @@ function MyApp({ Component, pageProps }: AppProps) {
     </div>
   )
 }
-
-export default MyApp

@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
@@ -8,7 +6,7 @@ import { Projects } from '@/types/projects'
 
 import { ProjectContents } from './ProjectContents'
 
-const Project: FC<Projects> = ({ projects }) => {
+export default function Project({ projects }: Projects) {
   return (
     <Container>
       <>
@@ -29,5 +27,3 @@ export const getStaticProps = async () => {
     }
   }
 }
-
-export default Project
