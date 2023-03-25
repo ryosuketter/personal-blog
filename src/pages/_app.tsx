@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 
 import { Layout } from '@/components/Layout'
 
-export const rubik = Rubik({
+const rubik = Rubik({
   subsets: ['latin']
 })
 
