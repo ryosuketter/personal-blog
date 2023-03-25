@@ -35,6 +35,8 @@ export const Meta: FC<Props> = ({ pageTitle, pageDesc, pageImg, pageImgW, pageIm
       <meta name="description" content={desc} />
       <meta property="og:description" content={desc} />
 
+      <meta name="robots" content="noindex" />
+
       <link rel="canonical" href={url} />
       <meta property="og:url" content={url} />
 
