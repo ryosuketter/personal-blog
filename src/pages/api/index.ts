@@ -20,8 +20,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
     .update(JSON.stringify(req.body))
     .digest('hex')
+  const expectedSignature_dig = crypto
+    .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
+    .update(JSON.stringify(req.body))
+  const expectedSignature_dig_up = crypto.createHmac('sha256', process.env.MICROCMS_SIGNATURE)
+
   // eslint-disable-next-line no-console
   console.log('expectedSignature', expectedSignature)
+  // eslint-disable-next-line no-console
+  console.log('expectedSignature_dig', expectedSignature_dig)
+  // eslint-disable-next-line no-console
+  console.log('expectedSignature_dig_up', expectedSignature_dig_up)
   // eslint-disable-next-line no-console
   console.log('Buffer.from(expectedSignature)', Buffer.from(expectedSignature))
   // eslint-disable-next-line no-console
