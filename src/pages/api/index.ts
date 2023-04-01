@@ -20,6 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     .digest('hex')
   // eslint-disable-next-line no-console
   console.log('expectedSignature', expectedSignature)
+  // eslint-disable-next-line no-console
+  console.log('Buffer.from(expectedSignature)', Buffer.from(expectedSignature))
+  // eslint-disable-next-line no-console
+  console.log(`req.headers['x-microcms-signature']`, Buffer.from(expectedSignature))
 
   // if check http request header named x-microcms-signature
   if (req.headers['x-microcms-signature'] !== process.env.MICROCMS_SIGNATURE) {
