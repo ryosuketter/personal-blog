@@ -9,6 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log('process.env.MICROCMS_SIGNATURE', process.env.MICROCMS_SIGNATURE)
 
+  const signature = req.headers['x-microcms-signature']
+
   // eslint-disable-next-line no-console
   console.log('req.body', req.body)
   // eslint-disable-next-line no-console
@@ -23,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log('Buffer.from(expectedSignature)', Buffer.from(expectedSignature))
   // eslint-disable-next-line no-console
-  console.log(`req.headers['x-microcms-signature']`, Buffer.from(expectedSignature))
+  console.log(`req.headers['x-microcms-signature']`, Buffer.from(signature?.toString() || ''))
 
   // if check http request header named x-microcms-signature
   if (req.headers['x-microcms-signature'] !== process.env.MICROCMS_SIGNATURE) {
