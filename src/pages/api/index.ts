@@ -25,6 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log('Buffer.from(expectedSignature)', Buffer.from(expectedSignature))
   // eslint-disable-next-line no-console
+  console.log('signature', signature)
+  // eslint-disable-next-line no-console
   console.log(`req.headers['x-microcms-signature']`, Buffer.from(signature?.toString() || ''))
 
   // if check http request header named x-microcms-signature
