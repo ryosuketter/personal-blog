@@ -8,10 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const signature = req.headers['x-microcms-signature'] as string
 
-  const expectedSignature: string = crypto
-    .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
-    .update(JSON.stringify(req.body))
-    .digest('hex')
+  const expectedSignature = crypto.createHmac('sha256', process.env.MICROCMS_SIGNATURE).update(req.body).digest('hex')
 
   // eslint-disable-next-line no-console
   console.log('signature', signature)
