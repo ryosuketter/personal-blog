@@ -9,10 +9,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log(`req.headers['x-microcms-signature']`, req.headers['x-microcms-signature'])
   // eslint-disable-next-line no-console
   console.log('process.env.MICROCMS_SIGNATURE', process.env.MICROCMS_SIGNATURE)
-
-  const expectedSignature = crypto.createHmac('sha256', process.env.MICROCMS_SIGNATURE).update(req.body).digest('hex')
   // eslint-disable-next-line no-console
-  console.log('expectedSignature', expectedSignature)
+  console.log('isCollectSignature', crypto.isCollectSignature(req.headers['x-microcms-signature'], req.body))
+
+  // const expectedSignature = crypto.createHmac('sha256', process.env.MICROCMS_SIGNATURE).update(req.body).digest('hex')
+  // eslint-disable-next-line no-console
 
   // if check http request header named x-microcms-signature
   if (req.headers['x-microcms-signature'] !== process.env.MICROCMS_SIGNATURE) {
