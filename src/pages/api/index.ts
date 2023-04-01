@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,6 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log('req.body', req.body)
   // eslint-disable-next-line no-console
   console.log('req.headers', req.headers)
+
+  const expectedSignature = crypto
+    .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
+    .update(JSON.stringify(req.body))
+    .digest('hex')
+  // eslint-disable-next-line no-console
+  console.log('expectedSignature', expectedSignature)
 
   // if check http request header named x-microcms-signature
   if (req.headers['x-microcms-signature'] !== process.env.MICROCMS_SIGNATURE) {
