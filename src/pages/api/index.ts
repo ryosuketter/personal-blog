@@ -16,7 +16,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log('req.headers', req.headers)
 
-  const expectedSignature = crypto.createHmac('sha256', 'abc').update(JSON.stringify(req.body)).digest('hex')
+  const expectedSignature = crypto
+    .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
+    .update(JSON.stringify(req.body))
+    .digest('hex')
 
   // eslint-disable-next-line no-console
   console.log('expectedSignature', expectedSignature)
@@ -26,6 +29,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log('signature', signature)
   // eslint-disable-next-line no-console
   console.log(`req.headers['x-microcms-signature']`, Buffer.from(signature))
+
+  if (crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+    // eslint-disable-next-line no-console
+    console.log('正しい署名です')
+  }
 
   try {
     await res.revalidate('/projects')
