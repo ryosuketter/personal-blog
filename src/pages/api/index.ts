@@ -30,9 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log(`req.headers['x-microcms-signature']`, Buffer.from(signature))
 
-  if (crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
-    // eslint-disable-next-line no-console
-    console.log('正しい署名です')
+  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+    return res.status(401).send('Invalid token')
   }
 
   try {
