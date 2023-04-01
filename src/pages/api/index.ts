@@ -9,7 +9,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // eslint-disable-next-line no-console
   console.log('process.env.MICROCMS_SIGNATURE', process.env.MICROCMS_SIGNATURE)
 
-  const hash = crypto.createHash('sha256').update(req.body).digest('hex')
+  const hash = crypto
+    .createHmac('sha256', process.env.MICROCMS_SIGNATURE || '')
+    .update(req.body)
+    .digest('hex')
   // eslint-disable-next-line no-console
   console.log('hash', hash)
 
