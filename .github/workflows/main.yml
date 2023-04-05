@@ -20,3 +20,5 @@ jobs:
         run: yarn
       - name: test
         run: yarn run jest
+      - name: eslint
+        run: yarn next lint
