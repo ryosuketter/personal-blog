@@ -4,7 +4,7 @@ name: CI
 # ワークフローが実行されるトリガー
 on: push
 
-# Node 環境をセットアップする
+# Node 環境をセットアップ
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,5 +16,5 @@ jobs:
         with:
           node-version: 16
           cache: npm
-     - name: npm-install
-       run: yarn
+      - name: npm-install
+        run: yarn
