@@ -8,8 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const signature = req.headers['x-microcms-signature'] as string
 
-  console.log()
-
   const expectedSignature = crypto
     .createHmac('sha256', process.env.MICROCMS_SIGNATURE)
     .update(JSON.stringify(req.body))
