@@ -16,5 +16,7 @@ jobs:
         with:
           node-version: 16
           cache: npm
-      - name: npm-install
+      - name: yarn-install
         run: yarn
+      - name: test
+        run: yarn run jest
