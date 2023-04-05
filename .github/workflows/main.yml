@@ -1,12 +1,13 @@
-name: CI # アクション名
-on: push # タイミングを指定
+# アクション名
+name: CI
+
+# ワークフローが実行されるトリガー
+on: push
 
 jobs:
-  github-context:
-    name: GitHub Context
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub Context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${GITHUB_CONTEXT}"
+      - uses: actions/checkout@v1
+      - name: yarn install
+        run: yarn install
