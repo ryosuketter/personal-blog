@@ -16,3 +16,5 @@ jobs:
         with:
           node-version: 16
           cache: npm
+     - name: npm-install
+       run: yarn
