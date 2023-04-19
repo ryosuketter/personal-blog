@@ -9,8 +9,8 @@
       "destination": "/"
     },
     {
-      "source": "/(.*)",
-      "destination": "https://legacy.hakadori-soudan.com/$1"
+      "source": "/(?<paramName>.*)",
+      "destination": "https://legacy.hakadori-soudan.com/:paramName"
     }
   ]
 }
