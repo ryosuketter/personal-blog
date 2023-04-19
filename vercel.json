@@ -1,16 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "https://legacy.hakadori-soudan.com/",
+      "has": [
+        {
+          "type": "query",
+          "key": "p"
+        }
+      ]
+    },
+    {
       "source": "/office/(.*)",
-      "destination": "/$1"
+      "destination": "/office/$1"
     },
     {
-      "source": "/office",
-      "destination": "/"
+      "source": "/?p=:p",
+      "destination": "https://legacy.hakadori-soudan.com/?p=:p"
     },
     {
-      "source": "/(?<paramName>.*)",
-      "destination": "https://legacy.hakadori-soudan.com/:paramName"
+      "source": "/(.*)",
+      "destination": "https://legacy.hakadori-soudan.com/$1"
     }
   ]
 }
