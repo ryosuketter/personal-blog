@@ -5,6 +5,10 @@
       "destination": "/office/$1"
     },
     {
+      "source": "/",
+      "destination": "https://legacy.hakadori-soudan.com/"
+    },
+    {
       "source": "/(.*)",
       "destination": "https://legacy.hakadori-soudan.com/$1"
     }
