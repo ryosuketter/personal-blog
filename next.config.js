@@ -1,22 +1,20 @@
-/** @type {import('next').NextConfig} */
+const rewrites = async () => {
+  return [
+    {
+      source: '/office/:path*',
+      destination: ':path*'
+    },
+    {
+      source: '/:path*',
+      destination: 'https://legacy.hakadori-soudan.com/:path*'
+    },
+    {
+      source: '/',
+      destination: 'https://legacy.hakadori-soudan.com/'
+    }
+  ]
+}
 
 module.exports = {
-  reactStrictMode: true,
-  swcMinify: true,
-  async rewrites() {
-    return [
-      {
-        source: '/office/:path*',
-        destination: ':path*'
-      },
-      {
-        source: '/:path*',
-        destination: 'https://legacy.hakadori-soudan.com/:path*'
-      },
-      {
-        source: '/',
-        destination: 'https://legacy.hakadori-soudan.com/'
-      }
-    ]
-  }
+  rewrites
 }
