@@ -1,16 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "https://legacy.hakadori-soudan.com/"
-    },
-    {
       "source": "/office/(.*)",
       "destination": "/$1"
     },
     {
       "source": "/(.*)",
       "destination": "https://legacy.hakadori-soudan.com/$1"
+    },
+    {
+      "source": "/",
+      "destination": "https://legacy.hakadori-soudan.com/"
     }
   ]
 }
