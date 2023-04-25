@@ -6,12 +6,12 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/office/(.*)',
-        destination: '/$1'
+        source: '/office/:path*',
+        destination: ':path*'
       },
       {
-        source: '/(.*)',
-        destination: 'https://legacy.hakadori-soudan.com/$1'
+        source: '/:path*',
+        destination: 'https://legacy.hakadori-soudan.com/:path*'
       },
       {
         source: '/',
