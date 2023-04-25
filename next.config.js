@@ -2,7 +2,7 @@ const rewrites = async () => {
   return [
     {
       source: '/office/:path*',
-      destination: ':path*'
+      destination: '/:path*'
     },
     {
       source: '/:path*',
