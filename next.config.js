@@ -5,6 +5,10 @@ const rewrites = async () => {
       destination: '/:path*'
     },
     {
+      source: '/aaa',
+      destination: 'https://example.com/blog'
+    },
+    {
       source: '/:path*',
       destination: 'https://legacy.hakadori-soudan.com/:path*'
     },
