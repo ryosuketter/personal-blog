@@ -6,7 +6,7 @@
     },
     {
       "source": "/office/(.*)",
-      "destination": "/office/$1"
+      "destination": "/$1"
     },
     {
       "source": "/(.*)",
