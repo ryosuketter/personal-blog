@@ -12,8 +12,12 @@ export const Hero: FC<HeroProps> = ({ title }) => {
         <span className={styles.keyVisual}>/</span>
         {title}
       </h2>
-      <a href="https://www.hakadori-soudan.com/aaa">リバースプロキシの確認</a>
-      <a href="https://www.hakadori-soudan.com/recommended-no-code-tools">webサイトのコンテンツへ</a>
+      <div>
+        <a href="https://www.hakadori-soudan.com/aaa">リバースプロキシの確認</a>
+      </div>
+      <div>
+        <a href="https://www.hakadori-soudan.com/recommended-no-code-tools">webサイトのコンテンツへ</a>
+      </div>
     </div>
   )
 }
