@@ -1,7 +1,7 @@
 import { Background } from '@/components/Background'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
-import { client } from '@/libs/client'
+import { client } from '@/lib/client'
 import { Projects } from '@/types/projects'
 
 import ProjectContents from './ProjectContents'

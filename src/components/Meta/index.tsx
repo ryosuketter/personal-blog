@@ -1,5 +1,5 @@
 import siteImg from 'images/ogp.jpg'
-import { siteMeta } from 'libs/constants'
+import { siteMeta } from 'lib/constants'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
