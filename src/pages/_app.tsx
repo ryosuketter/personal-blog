@@ -4,6 +4,7 @@ import { Rubik } from '@next/font/google'
 import type { AppProps } from 'next/app'
 
 import { Layout } from '@/components/Layout'
+import { AuthProvider } from '@/features/stores/context/auth'
 
 const rubik = Rubik({
   subsets: ['latin']
@@ -19,9 +20,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', メイリオ, Meiryo, 'Hiragino Sans', sans-serif;
         }
       `}</style>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <AuthProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthProvider>
     </div>
   )
 }
