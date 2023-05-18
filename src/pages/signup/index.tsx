@@ -1,13 +1,11 @@
 import { FirebaseError } from 'firebase/app'
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from 'firebase/auth'
-import { NextPage } from 'next'
 import router from 'next/router'
-import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { User } from '@/types/user'
 
-export const SignUp: FC<NextPage> = () => {
+export default function SignUp() {
   const isValid = async (data: User) => {
     try {
       const auth = getAuth()
