@@ -1,44 +1,35 @@
-import { onAuthStateChanged } from '@firebase/auth'
-import { doc, getDoc, setDoc } from '@firebase/firestore'
+import { onAuthStateChanged } from 'firebase/auth'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
-import { auth, db } from '@/lib/firebase/client'
-import { User } from '@/types/user'
+import { auth } from '@/lib/firebase/client'
 
-type UserContextType = User | null | undefined
+type ContextType = {
+  isLoggedIn: boolean
+  isLoading: boolean
+  userName: string
+}
 
-const AuthContext = createContext<UserContextType>(undefined)
+const AuthContext = createContext<ContextType>({
+  isLoggedIn: false,
+  isLoading: false,
+  userName: ''
+})
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<UserContextType>()
+  const [isLoading, setIsLoading] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userName, setUserName] = useState('')
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        const ref = doc(db, `users/${firebaseUser.uid}`)
-        const snap = await getDoc(ref)
-
-        if (snap.exists()) {
-          const appUser = (await getDoc(ref)).data() as User
-          setUser(appUser)
-        } else {
-          const appUser: User = {
-            id: firebaseUser.uid,
-            name: firebaseUser.displayName || 'test',
-            photoURL: firebaseUser.photoURL || 'https://placehold.jp/150x150.png',
-            email: firebaseUser.email || 'test@mail.com',
-            createdAt: Date.now()
-          }
-          setDoc(ref, appUser).then(() => setUser(appUser))
-        }
-      } else {
-        setUser(null)
-      }
-      return unsubscribe
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user)
+      setIsLoading(false)
+      setUserName(user?.displayName || '')
     })
+    return () => unsubscribe()
   }, [])
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ isLoggedIn, isLoading, userName }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => useContext(AuthContext)
