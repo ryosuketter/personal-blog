@@ -4,10 +4,10 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { signupFormValidationSchema } from '@/features/form/validationSchema'
-import { useSignUp } from '@/features/hooks/useSignup'
+import { loginFormValidationSchema } from '@/features/form/validationSchema'
+import { useLogin } from '@/features/hooks/useLogin'
 import { useAuth } from '@/features/stores/context/auth'
-import { SignUp as SignUpForm } from '@/types/signup'
+import { Login as LoginForm } from '@/types/login'
 
 export default function Signup() {
   const { isLoggedIn } = useAuth()
@@ -21,27 +21,22 @@ export default function Signup() {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignUpForm>({
+  } = useForm<LoginForm>({
     mode: 'onBlur',
-    resolver: zodResolver(signupFormValidationSchema)
+    resolver: zodResolver(loginFormValidationSchema)
   })
 
-  const { signUp } = useSignUp()
+  const { login } = useLogin()
 
-  const onSubmit = (data: SignUpForm) => {
-    const { email, password, displayName } = data
-    signUp({ email, password, displayName })
+  const onSubmit = (data: LoginForm) => {
+    const { email, password } = data
+    login(email, password)
   }
 
   return (
     <>
-      <h1>Signup</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="displayName">名前</label>
-          <input {...register('displayName')} id="displayName" type="text" placeholder="田中 一郎" />
-          {errors.displayName && <p>{errors.displayName.message}</p>}
-        </div>
         <div>
           <label htmlFor="email">email</label>
           <input autoComplete="off" {...register('email')} id="email" type="email" placeholder="axis@mail.com" />
@@ -52,9 +47,9 @@ export default function Signup() {
           <input autoComplete="off" {...register('password')} id="password" type="password" />
           {errors.password && <p>{errors.password.message}</p>}
         </div>
-        <button type="submit">登録</button>
+        <button type="submit">ログイン</button>
       </form>
-      <Link href="/login">すでにアカウントをお持ちの方はこちら</Link>
+      <Link href="/signup">アカウントをお持ちでない方はこちら</Link>
     </>
   )
 }
