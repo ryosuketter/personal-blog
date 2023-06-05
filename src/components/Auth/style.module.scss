@@ -1,0 +1,30 @@
+@import 'styles/mediaQuery.scss';
+
+.wrapper {
+  border-top: 1px solid var(--color-gray-10);
+  padding: var(--spacing-2);
+  @include mq('sm') {
+    padding: var(--spacing-1);
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2em;
+}
+
+.link {
+  color: var(--color-black);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+
+  &:hover {
+    color: var(--color-link);
+  }
+}
+
+.sub {
+  color: var(--color-gray-75);
+  font-size: var(--font-size-small-heading3);
+}

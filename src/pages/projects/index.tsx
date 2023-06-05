@@ -1,3 +1,4 @@
+import { Auth } from '@/components/Auth'
 import { Background } from '@/components/Background'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
@@ -11,6 +12,7 @@ export default function Project({ projects }: Projects) {
     <>
       <Meta pageTitle="Projects" pageDesc="これまでに参加したプロジェクトの一覧です" />
       <Hero title="Projects" />
+      <Auth />
       <Background>
         <ProjectContents projects={projects} />
       </Background>
