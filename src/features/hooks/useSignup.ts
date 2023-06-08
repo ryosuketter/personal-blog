@@ -5,16 +5,16 @@ import { auth } from '@/lib/firebase/client'
 import { SignUp } from '@/types/signup'
 
 export const useSignUp = () => {
-  const signUp = ({ email, password }: SignUp) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        return sendEmailVerification(userCredential.user).then(() => userCredential)
-      })
-      .catch((error) => {
-        if (error instanceof FirebaseError) {
-          alert(`${error.name}: ${error.code}`)
-        }
-      })
+  const signUp = async ({ email, password }: SignUp) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      await sendEmailVerification(userCredential.user)
+      return userCredential
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        alert(`${error.name}: ${error.code}`)
+      }
+    }
   }
 
   return { signUp }
