@@ -9,7 +9,7 @@ import { auth } from '@/lib/firebase/client'
 import styles from './style.module.scss'
 
 export const Auth: FC = () => {
-  const { isLoggedIn, userName } = useAuth()
+  const user = useAuth()
 
   const handleClick = () => {
     signOut(auth)
@@ -21,7 +21,7 @@ export const Auth: FC = () => {
     <div className={styles.wrapper}>
       <Container large>
         <ul className={styles.list}>
-          {!isLoggedIn ? (
+          {!user ? (
             <>
               <li>
                 <Link href="/signup" className={styles.link}>
@@ -35,14 +35,9 @@ export const Auth: FC = () => {
               </li>
             </>
           ) : (
-            <>
-              <li>
-                <p className={styles.sub}>{userName}</p>
-              </li>
-              <li>
-                <button onClick={() => handleClick()}>ログアウト</button>
-              </li>
-            </>
+            <li>
+              <button onClick={() => handleClick()}>ログアウト</button>
+            </li>
           )}
         </ul>
       </Container>

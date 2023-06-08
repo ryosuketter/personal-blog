@@ -11,7 +11,6 @@ const passwordSchema = z
   .min(8, { message: 'パスワードは8文字以上で入力してください' })
 
 export const signupFormValidationSchema = z.object({
-  displayName: z.string().nonempty({ message: '名前は必須です' }),
   email: emailSchema,
   password: passwordSchema
 })

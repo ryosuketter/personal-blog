@@ -10,12 +10,12 @@ import { useAuth } from '@/features/stores/context/auth'
 import { SignUp as SignUpForm } from '@/types/signup'
 
 export default function Signup() {
-  const { isLoggedIn } = useAuth()
+  const user = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    if (isLoggedIn) router.push('/')
-  }, [isLoggedIn, router])
+    if (user) router.push('/')
+  }, [user, router])
 
   const {
     register,
@@ -29,19 +29,14 @@ export default function Signup() {
   const { signUp } = useSignUp()
 
   const onSubmit = (data: SignUpForm) => {
-    const { email, password, displayName } = data
-    signUp({ email, password, displayName })
+    const { email, password } = data
+    signUp({ email, password })
   }
 
   return (
     <>
       <h1>Signup</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="displayName">名前</label>
-          <input {...register('displayName')} id="displayName" type="text" placeholder="田中 一郎" />
-          {errors.displayName && <p>{errors.displayName.message}</p>}
-        </div>
         <div>
           <label htmlFor="email">email</label>
           <input autoComplete="off" {...register('email')} id="email" type="email" placeholder="axis@mail.com" />

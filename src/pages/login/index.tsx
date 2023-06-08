@@ -10,12 +10,12 @@ import { useAuth } from '@/features/stores/context/auth'
 import { Login as LoginForm } from '@/types/login'
 
 export default function Signup() {
-  const { isLoggedIn } = useAuth()
+  const user = useAuth()
   const router = useRouter()
 
   useEffect(() => {
-    if (isLoggedIn) router.push('/')
-  }, [isLoggedIn, router])
+    if (user) router.push('/')
+  }, [user, router])
 
   const {
     register,
