@@ -35,9 +35,16 @@ export const Auth: FC = () => {
               </li>
             </>
           ) : (
-            <li>
-              <button onClick={() => handleClick()}>ログアウト</button>
-            </li>
+            <>
+              <li>
+                <button onClick={() => handleClick()}>logout</button>
+              </li>
+              <li>
+                <Link href="/user" className={styles.link}>
+                  Profile
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </Container>
