@@ -1,0 +1,50 @@
+.inputWrapper {
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 1px dotted #5d5d5d;
+  background-color: #a7bbff;
+}
+
+.inputWrapperDisabled {
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 2px dotted #5d5d5d;
+  cursor: pointer;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.imgIcon {
+  width: 30%;
+  height: 30%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #5d5d5d;
+}
+
+.dropImgText {
+  position: relative;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  text-align: center;
+  color: #5d5d5d;
+}
+
+.dropImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
