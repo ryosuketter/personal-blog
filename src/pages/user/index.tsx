@@ -11,6 +11,9 @@ export default function User() {
       <div>
         <Link href="/user/editPhoto">editPhoto</Link>
       </div>
+      <div>
+        <Link href="/user/deleteUser">deleteUser</Link>
+      </div>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app'
-import { collection, doc, setDoc } from 'firebase/firestore'
+import { collection, doc, updateDoc } from 'firebase/firestore'
 
 import { auth } from '@/lib/firebase/client'
 import { db } from '@/lib/firebase/client'
@@ -11,8 +11,9 @@ export const useUpdateUser = () => {
     if (!userId) return
     const userRef = collection(db, 'users')
     const docRef = doc(userRef, userId)
+
     try {
-      await setDoc(docRef, data)
+      await updateDoc(docRef, data)
     } catch (error) {
       if (error instanceof FirebaseError) {
         alert(`${error.name}: ${error.code}`)

@@ -67,3 +67,7 @@ export const editUserIconValidationSchema = z.object({
 // いずれかであることを確認しています。
 // 必要に応じて、さらに.refine()を使用して追加の検証ロジックを追加できます。
 // 例えば、アップロードされるファイルの最大サイズを制限することも可能です。
+
+export const deleteUserFormValidationSchema = z.object({
+  password: passwordSchema
+})
