@@ -16,7 +16,13 @@ export default function Blog({ title, content, slug, eyecatch, category, publish
 
   return (
     <>
-      <Meta pageTitle="Blog" pageDesc="会員限定のBlogの一覧です" />
+      <Meta
+        pageTitle={title}
+        pageDesc={title}
+        pageImg={eyecatch.url}
+        pageImgW={`${eyecatch.width}`}
+        pageImgH={`${eyecatch.height}`}
+      />
       <Hero title={slug} publishDate={publishDate} />
       <Container>
         <article style={{ marginBottom: 'var(--spacing-lg)' }}>
