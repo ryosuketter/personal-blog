@@ -17,6 +17,11 @@ export const Nav: FC = () => {
             Projects
           </Link>
         </li>
+        <li>
+          <Link href="/blog" className={styles.link}>
+            Blog
+          </Link>
+        </li>
       </ul>
     </nav>
   )

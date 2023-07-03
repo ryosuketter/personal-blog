@@ -1,0 +1,23 @@
+@import 'styles/utils.scss';
+
+.wrapper {
+  @include verticallyCenteredSideBySide;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+}
+
+.title {
+  font-size: var(--font-size-heading1);
+  font-weight: var(--font-weight-bold);
+}
+
+.keyVisual {
+  font-size: var(--font-size-heading1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-yellow);
+}
+
+.publishDate {
+  font-size: var(--font-size-small-heading3);
+  color: var(--color-gray-50);
+}
