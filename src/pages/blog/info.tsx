@@ -11,8 +11,6 @@ import { Post } from '@/types/post'
 export default function Blog({ title, content, slug, eyecatch, category, publishDate }: Post) {
   // eslint-disable-next-line no-console
   console.log('category', category)
-  // eslint-disable-next-line no-console
-  console.log('eyecatch', eyecatch)
 
   return (
     <>
