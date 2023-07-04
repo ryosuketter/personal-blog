@@ -1,14 +1,15 @@
 import Link from 'next/link'
 
-import { Post } from '@/types/post'
-
 import styles from './style.module.scss'
 
-interface BlogProps {
-  posts: Post[]
+interface PostsProps {
+  posts: {
+    title: string
+    slug: string
+  }[]
 }
 
-export const Posts = ({ posts }: BlogProps) => {
+export const Posts = ({ posts }: PostsProps) => {
   return (
     <div className={styles.posts}>
       {posts.map(({ slug, title }) => (
