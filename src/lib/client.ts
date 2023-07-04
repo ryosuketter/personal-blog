@@ -15,3 +15,33 @@ export const getPostBySlug = async (slug: string) => {
     console.error(error)
   }
 }
+
+// 254p
+export const getAllSlugs = async (limit = 100): Promise<{ slug: string }[]> => {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: { limit, fields: 'title,slug', orders: '-publishDate' }
+    })
+    return posts.contents
+  } catch (error) {
+    console.error('get all slugs error')
+    console.error(error)
+    return []
+  }
+}
+
+// 269p
+export const getAllPosts = async (limit = 100): Promise<{ slug: string }[]> => {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: { limit, fields: 'title,slug,eyecatch', orders: '-publishDate' }
+    })
+    return posts.contents
+  } catch (error) {
+    console.error('get all posts error')
+    console.error(error)
+    return []
+  }
+}

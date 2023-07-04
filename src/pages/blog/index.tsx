@@ -1,25 +1,34 @@
 import { Auth } from '@/components/Auth'
+import { Posts } from '@/components/Blog'
+import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
 import { Meta } from '@/components/Meta'
-import { getPostBySlug } from '@/lib/client'
+import { getAllPosts } from '@/lib/client'
+import { Post } from '@/types/post'
 
-export default function Blog() {
+interface BlogProps {
+  posts: Post[]
+}
+
+export default function Blog({ posts }: BlogProps) {
   return (
     <>
       <Meta pageTitle="Blog" pageDesc="会員限定のBlogの一覧です" />
       <Hero title="Blog" />
+      <Container>
+        <Posts posts={posts} />
+      </Container>
       <Auth />
     </>
   )
 }
 
 export const getStaticProps = async () => {
-  const slug = 'info'
-  const post = await getPostBySlug(slug)
+  const posts = await getAllPosts()
 
   return {
     props: {
-      title: post.title
+      posts: posts
     }
   }
 }
