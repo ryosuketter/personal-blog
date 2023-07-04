@@ -4,7 +4,7 @@ type Eyecatch = {
   width: number
 }
 
-type Category = {
+export type Category = {
   id: string
   createdAt: Date
   updatedAt: Date
