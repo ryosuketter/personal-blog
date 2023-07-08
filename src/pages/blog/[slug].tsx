@@ -1,10 +1,9 @@
 import { eyecatchLocal } from 'lib/constants'
 import { GetStaticPropsContext } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Auth } from '@/components/Auth'
-import { Body, ConvertBody, Hero } from '@/components/Blog'
+import { Body, CategoryListLink, ConvertBody, Hero } from '@/components/Blog'
 import { Container } from '@/components/Container'
 import { Meta } from '@/components/Meta'
 import { getAllSlugs, getPostBySlug } from '@/lib/client'
@@ -38,9 +37,7 @@ export default function Blog({ title, content, slug, eyecatch, category, publish
           <Body>
             <ConvertBody contentHTML={content} />
           </Body>
-          <Link href={`/blog/category/${category.slug}`}>
-            <p style={{ fontSize: 'var(--font-size-body)', marginTop: 'var(--spacing-md)' }}>カテゴリ一覧へ</p>
-          </Link>
+          <CategoryListLink category={category} />
         </article>
       </Container>
       <Auth />
