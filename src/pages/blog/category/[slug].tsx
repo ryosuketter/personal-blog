@@ -16,7 +16,7 @@ type CategoryPageProps = {
   slug: string
 }
 
-export default function Categry({ posts, name, slug }: CategoryPageProps) {
+export default function Category({ posts, name, slug }: CategoryPageProps) {
   return (
     <>
       <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
