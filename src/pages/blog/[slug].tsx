@@ -3,7 +3,7 @@ import { GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 
 import { Auth } from '@/components/Auth'
-import { Body, CategoryListLink, ConvertBody, Hero } from '@/components/Blog'
+import { Body, CategoryListLink, ConvertBody, Hero, LikeButton } from '@/components/Blog'
 import { Container } from '@/components/Container'
 import { Meta } from '@/components/Meta'
 import { getAllSlugs, getPostBySlug } from '@/lib/client'
@@ -34,6 +34,7 @@ export default function Blog({ title, content, slug, eyecatch, category, publish
             />
           </figure>
           <h2 style={{ fontSize: 'var(--font-size-heading2)', marginBottom: 'var(--spacing-md)' }}>{title}</h2>
+          <LikeButton postId={slug} />
           <Body>
             <ConvertBody contentHTML={content} />
           </Body>
