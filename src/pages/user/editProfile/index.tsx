@@ -10,7 +10,7 @@ import { editFormValidationSchema } from '@/features/form/validationSchema'
 import { useUpdateUser } from '@/features/hooks/useUpdateUser'
 import { auth } from '@/lib/firebase/client'
 import { db } from '@/lib/firebase/client'
-import { EditProfile as EditProfileForm } from '@/types/editProfile'
+import { EditProfile as EditProfileForm, EditProfilePrivate, EditProfilePublic } from '@/types/editProfile'
 
 export default function EditProfile() {
   const [defaultValues, setDefaultValues] = useState<EditProfileForm | null>(null)
@@ -30,14 +30,24 @@ export default function EditProfile() {
     const fetchUserData = async () => {
       const userId = auth.currentUser?.uid
       if (!userId) return
-      const userRef = collection(db, 'users')
-      const docRef = doc(userRef, userId)
+
+      const publicUserRef = collection(db, 'userPublicProfiles')
+      const privateUserRef = collection(db, 'userPrivateProfiles')
+
+      const publicDocRef = doc(publicUserRef, userId)
+      const privateDocRef = doc(privateUserRef, userId)
+
       try {
-        const docSnap = await getDoc(docRef)
-        if (docSnap.exists()) {
-          const userData = docSnap.data() as EditProfileForm
-          setDefaultValues(userData)
-          reset(userData)
+        const publicDocSnap = await getDoc(publicDocRef)
+        const privateDocSnap = await getDoc(privateDocRef)
+
+        if (publicDocSnap.exists() && privateDocSnap.exists()) {
+          const publicUserData = publicDocSnap.data() as EditProfilePublic
+          const privateUserData = privateDocSnap.data() as EditProfilePrivate
+          const userData: EditProfileForm = { ...publicUserData, ...privateUserData }
+
+          setDefaultValues(userData) // Reactのstateで、初期値を設定するための関数
+          reset(userData) // フォームの入力値をリセットするための関数
         }
       } catch (error) {
         if (error instanceof FirebaseError) {
@@ -51,7 +61,23 @@ export default function EditProfile() {
   const { updateUser } = useUpdateUser()
 
   const onSubmit = (data: EditProfileForm) => {
-    updateUser(data)
+    // EditProfileForm型のデータをPublicとPrivateの2つに分ける
+    const publicData: EditProfilePublic = {
+      displayName: data.displayName,
+      companyName: data.companyName,
+      job: data.job,
+      industry: data.industry,
+      profile: data.profile
+    }
+
+    const privateData: EditProfilePrivate = {
+      gender: data.gender,
+      birthDate: data.birthDate,
+      prefecture: data.prefecture
+    }
+
+    // 分割したデータを更新関数に送信
+    updateUser({ publicData, privateData })
   }
 
   if (!defaultValues) {
@@ -63,36 +89,9 @@ export default function EditProfile() {
       <h1>editProfile</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="lastName">lastName</label>
-          <input autoComplete="off" {...register('lastName')} id="lastName" type="lastName" placeholder="佐藤" />
-          {errors.lastName && <p>{errors.lastName.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="lastNameKana">lastNameKana</label>
-          <input
-            autoComplete="off"
-            {...register('lastNameKana')}
-            id="lastNameKana"
-            type="lastNameKana"
-            placeholder="サトウ"
-          />
-          {errors.lastNameKana && <p>{errors.lastNameKana.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="firstName">firstName</label>
-          <input autoComplete="off" {...register('firstName')} id="firstName" type="firstName" placeholder="太郎" />
-          {errors.firstName && <p>{errors.firstName.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="firstNameKana">firstNameKana</label>
-          <input
-            autoComplete="off"
-            {...register('firstNameKana')}
-            id="firstNameKana"
-            type="firstNameKana"
-            placeholder="タロウ"
-          />
-          {errors.firstNameKana && <p>{errors.firstNameKana.message}</p>}
+          <label htmlFor="displayName">displayName</label>
+          <input autoComplete="off" {...register('displayName')} id="displayName" type="text" placeholder="佐藤 太郎" />
+          {errors.displayName && <p>{errors.displayName.message}</p>}
         </div>
         <div>
           <label htmlFor="companyName">companyName</label>

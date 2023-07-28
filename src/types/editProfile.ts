@@ -1,8 +1,5 @@
 export type EditProfile = {
-  lastName?: string
-  lastNameKana?: string
-  firstName?: string
-  firstNameKana?: string
+  displayName?: string
   companyName?: string
   job: string
   industry: string
@@ -10,4 +7,18 @@ export type EditProfile = {
   birthDate?: string
   gender: string
   profile?: string
+}
+
+export type EditProfilePublic = {
+  displayName?: string
+  companyName?: string
+  job: string
+  industry: string
+  profile?: string
+}
+
+export type EditProfilePrivate = {
+  gender: string
+  birthDate?: string
+  prefecture: string
 }

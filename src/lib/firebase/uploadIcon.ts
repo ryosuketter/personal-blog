@@ -21,7 +21,7 @@ const uploadIconToStorage = async (iconData: string) => {
 
 const updateIconInFirestore = async (iconURL: string) => {
   try {
-    const documentRef = doc(collection(db, 'users'), auth.currentUser?.uid)
+    const documentRef = doc(collection(db, 'userPublicProfiles'), auth.currentUser?.uid)
     await setDoc(documentRef, { iconURL }, { merge: true })
   } catch (error) {
     console.error("Error updating user's icon in Firestore:", error)

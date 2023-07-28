@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
+import { collection, doc, runTransaction } from 'firebase/firestore'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '@/lib/firebase/client'
@@ -15,21 +15,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userRef = collection(db, 'users')
-        const docRef = doc(userRef, user.uid)
-        const snap = await getDoc(docRef)
+        const userPublicRef = collection(db, 'userPublicProfiles')
+        const userPrivateRef = collection(db, 'userPrivateProfiles')
+        const docPublicRef = doc(userPublicRef, user.uid)
+        const docPrivateRef = doc(userPrivateRef, user.uid)
 
-        if (snap.exists()) {
-          const userData = snap.data() as User
-          setUser(userData)
-        } else {
-          const userData: User = {
-            uid: user.uid,
-            createdAt: new Date()
+        await runTransaction(db, async (transaction) => {
+          const snapPublic = await transaction.get(docPublicRef)
+          const snapPrivate = await transaction.get(docPrivateRef)
+
+          if (snapPublic.exists() && snapPrivate.exists()) {
+            const userData = {
+              ...snapPublic.data(),
+              ...snapPrivate.data()
+            } as User
+            setUser(userData)
+          } else {
+            const userData: User = {
+              uid: user.uid,
+              createdAt: new Date()
+            }
+            transaction.set(docPublicRef, userData)
+            transaction.set(docPrivateRef, userData)
+            setUser(userData)
           }
-          await setDoc(docRef, userData)
-          setUser(userData)
-        }
+        })
       } else {
         setUser(null)
       }

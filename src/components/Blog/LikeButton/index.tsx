@@ -1,6 +1,16 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { collection, deleteDoc, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  runTransaction,
+  setDoc
+} from 'firebase/firestore'
 import { FC, useCallback, useEffect, useState } from 'react'
 
 import { db } from '@/lib/firebase/client'
@@ -14,6 +24,7 @@ interface LikeButtonProps {
 
 export const LikeButton: FC<LikeButtonProps> = ({ postId }) => {
   const userId = auth.currentUser?.uid
+  const username = auth.currentUser?.displayName
 
   const [isLiked, setIsLiked] = useState<boolean | null>(null)
   const [likeCount, setLikeCount] = useState<number>(0)
@@ -21,16 +32,16 @@ export const LikeButton: FC<LikeButtonProps> = ({ postId }) => {
   useEffect(() => {
     if (!userId) return
 
-    const postRef = doc(db, 'posts', postId)
-    const likedUserRef = doc(postRef, 'LikedUsers', userId)
-
-    const unsubscribeLikedUser = onSnapshot(likedUserRef, (doc) => {
-      setIsLiked(doc.exists())
+    const postLikesRef = collection(db, 'postLikes') // changed to 'postLikes'
+    const unsubscribeLikedUser = onSnapshot(postLikesRef, (snapshot) => {
+      const likedDoc = snapshot.docs.find((doc) => doc.data().userId === userId && doc.data().postId === postId)
+      setIsLiked(likedDoc ? true : false)
     })
 
-    const likedUsersRef = collection(db, `posts/${postId}/LikedUsers`)
-    const unsubscribeLikedCount = onSnapshot(likedUsersRef, (snapshot) => {
-      setLikeCount(snapshot.size)
+    const postDocRef = doc(db, 'posts', postId)
+    const unsubscribeLikedCount = onSnapshot(postDocRef, (snapshot) => {
+      const postData = snapshot.data()
+      if (postData) setLikeCount(postData.likeCount)
     })
 
     return () => {
@@ -42,24 +53,32 @@ export const LikeButton: FC<LikeButtonProps> = ({ postId }) => {
   const handleClick = useCallback(async () => {
     if (!userId || isLiked === null) return
 
-    const postRef = doc(db, 'posts', postId)
-    const likedUserRef = doc(postRef, 'LikedUsers', userId)
+    const postLikesRef = collection(db, 'postLikes')
+    const postDocRef = doc(db, 'posts', postId)
 
-    const userDoc = doc(db, 'users', userId)
-    const userSnapshot = await getDoc(userDoc)
-    const userData = userSnapshot.data()
-    const lastName = userData?.lastName
+    const postDoc = await getDoc(postDocRef)
 
-    const userLikePostRef = doc(userDoc, 'likePosts', postId)
+    if (!postDoc.exists()) await setDoc(postDocRef, { likeCount: 0 })
 
-    if (isLiked) {
-      await deleteDoc(likedUserRef)
-      await deleteDoc(userLikePostRef)
-    } else {
-      await setDoc(likedUserRef, { userId, lastName })
-      await setDoc(userLikePostRef, { slug: postId })
-    }
-  }, [userId, postId, isLiked])
+    await runTransaction(db, async (transaction) => {
+      const postDoc = await transaction.get(postDocRef)
+      const postData = postDoc.data()
+      if (!postData) throw Error('Document does not exist!')
+
+      if (isLiked) {
+        const likedDoc = (await getDocs(postLikesRef)).docs.find(
+          (doc) => doc.data().userId === userId && doc.data().postId === postId
+        )
+        if (likedDoc) {
+          await deleteDoc(likedDoc.ref)
+        }
+        transaction.update(postDocRef, { likeCount: postData.likeCount - 1 })
+      } else {
+        await addDoc(postLikesRef, { userId, postId, username })
+        transaction.update(postDocRef, { likeCount: postData.likeCount + 1 })
+      }
+    })
+  }, [userId, postId, isLiked, username])
 
   if (!userId) return null
   if (isLiked === null) return null
